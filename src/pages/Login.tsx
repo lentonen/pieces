@@ -7,11 +7,13 @@ import {
   Button, 
   Box,
   Link,
-  Alert
+  Alert,
+  Divider,
+  Stack
 } from '@mui/material';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Google as GoogleIcon } from '@mui/icons-material';
+import { Google as GoogleIcon, GitHub as GitHubIcon } from '@mui/icons-material';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -50,6 +52,10 @@ const Login: React.FC = () => {
     window.location.href = 'http://localhost:5000/api/auth/google';
   };
 
+  const handleGithubLogin = () => {
+    window.location.href = 'http://localhost:5000/api/auth/github';
+  };
+
   return (
     <Container maxWidth="sm">
       <Box
@@ -60,70 +66,121 @@ const Login: React.FC = () => {
           alignItems: 'center',
         }}
       >
-        <Typography component="h1" variant="h5">
-          Kirjaudu sisään
-        </Typography>
-        <Button
-          variant="contained"
-          startIcon={<GoogleIcon />}
-          onClick={handleGoogleLogin}
-          sx={{ mt: 3, mb: 2 }}
+        <Paper 
+          elevation={3} 
+          sx={{ 
+            p: 4, 
+            width: '100%',
+            borderRadius: 2,
+            background: 'rgba(19, 47, 76, 0.5)',
+            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+          }}
         >
-          Kirjaudu Google-tilillä
-        </Button>
-      </Box>
-      <Box sx={{ mt: 8, mb: 4 }}>
-        <Paper elevation={3} sx={{ p: 4 }}>
-          <Typography variant="h4" component="h1" gutterBottom align="center">
-            Login
+          <Typography component="h1" variant="h4" align="center" gutterBottom sx={{ fontWeight: 600, color: 'primary.main' }}>
+            Welcome to Pieces
           </Typography>
-          
+          <Typography variant="body1" align="center" sx={{ mb: 3, color: 'rgba(255, 255, 255, 0.9)' }}>
+            Sign in to join our community of developers
+          </Typography>
+
           {error && (
-            <Alert severity="error" sx={{ mb: 2 }}>
+            <Alert severity="error" sx={{ mb: 3 }}>
               {error}
             </Alert>
           )}
 
+          <Stack spacing={2} sx={{ mb: 3 }}>
+            <Button
+              fullWidth
+              variant="contained"
+              startIcon={<GoogleIcon />}
+              onClick={handleGoogleLogin}
+              sx={{ 
+                py: 1.5,
+                backgroundColor: '#4285F4',
+                '&:hover': {
+                  backgroundColor: '#3367D6',
+                }
+              }}
+            >
+              Sign in with Google
+            </Button>
+            <Button
+              fullWidth
+              variant="contained"
+              startIcon={<GitHubIcon />}
+              onClick={handleGithubLogin}
+              sx={{ 
+                py: 1.5,
+                backgroundColor: '#2f363d',
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: '#444c56',
+                }
+              }}
+            >
+              Sign in with GitHub
+            </Button>
+          </Stack>
+
+          <Divider sx={{ my: 3 }}>
+            <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
+              OR
+            </Typography>
+          </Divider>
+
           <form onSubmit={handleSubmit}>
             <TextField
+              margin="normal"
+              required
               fullWidth
-              label="Email"
+              id="email"
+              label="Email Address"
               name="email"
-              type="email"
+              autoComplete="email"
+              autoFocus
               value={formData.email}
               onChange={handleChange}
+              sx={{ mb: 2 }}
+            />
+            <TextField
               margin="normal"
               required
-            />
-            
-            <TextField
               fullWidth
-              label="Password"
               name="password"
+              label="Password"
               type="password"
+              id="password"
+              autoComplete="current-password"
               value={formData.password}
               onChange={handleChange}
-              margin="normal"
-              required
+              sx={{ mb: 3 }}
             />
-
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              color="primary"
-              size="large"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ 
+                py: 1.5,
+                background: 'linear-gradient(45deg, #00b4d8 30%, #90e0ef 90%)',
+                '&:hover': {
+                  background: 'linear-gradient(45deg, #0096c7 30%, #48cae4 90%)',
+                }
+              }}
             >
-              Login
+              Sign In
             </Button>
-
-            <Box sx={{ textAlign: 'center' }}>
-              <Link component={RouterLink} to="/register" variant="body2">
-                Don't have an account? Register
-              </Link>
-            </Box>
           </form>
+
+          <Box sx={{ mt: 3, textAlign: 'center' }}>
+            <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
+              Don't have an account?{' '}
+              <Link component={RouterLink} to="/register" variant="body2" sx={{ color: 'primary.main' }}>
+                Sign Up
+              </Link>
+            </Typography>
+          </Box>
         </Paper>
       </Box>
     </Container>

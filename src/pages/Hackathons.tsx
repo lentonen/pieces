@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Box, Typography, Grid, Card, CardContent, CardMedia, Button, Chip, Avatar, Tabs, Tab, Divider, Paper, List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
+import { Container, Box, Typography, Grid, Card, CardContent, CardMedia, Button, Chip, Avatar, Tabs, Tab, Divider, Paper, List, ListItem, ListItemText, ListItemIcon, LinearProgress } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import GroupIcon from '@mui/icons-material/Group';
@@ -8,6 +8,8 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PersonIcon from '@mui/icons-material/Person';
 import StarIcon from '@mui/icons-material/Star';
 import TimelineIcon from '@mui/icons-material/Timeline';
+import HowToVoteIcon from '@mui/icons-material/HowToVote';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { Timeline, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent } from '@mui/lab';
 
 // Styled components
@@ -83,6 +85,16 @@ interface Hackathon {
   tags: string[];
 }
 
+// Add new interface for hackathon topics
+interface HackathonTopic {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  votes: number;
+  totalVotes: number;
+}
+
 // Update mock data type
 const mockHackathons: Hackathon[] = [
   {
@@ -112,24 +124,24 @@ const mockHackathons: Hackathon[] = [
     sponsors: [
       { 
         name: "Nokia", 
-        logo: "https://upload.wikimedia.org/wikipedia/commons/0/02/Nokia_wordmark.svg", 
+        logo: "", 
         tier: "platinum" 
       },
       { 
         name: "KONE", 
-        logo: "https://upload.wikimedia.org/wikipedia/commons/9/95/KONE_logo.svg", 
+        logo: "", 
         tier: "gold" 
       },
       { 
         name: "Wärtsilä", 
-        logo: "https://upload.wikimedia.org/wikipedia/commons/9/9e/W%C3%A4rtsil%C3%A4_logo_2017.svg", 
+        logo: "", 
         tier: "silver" 
       }
     ],
     mentors: [
-      { name: "Pekka Lundmark", role: "President and CEO at Nokia", expertise: "Business Strategy & 5G" },
-      { name: "Henrik Ehrnrooth", role: "CEO at KONE", expertise: "Smart Buildings & IoT" },
-      { name: "Håkan Agnevall", role: "CEO at Wärtsilä", expertise: "Industrial IoT & Sustainability" }
+      { name: "Jari Mäkinen", role: "Senior Technology Architect at Nokia", expertise: "Business Strategy & 5G" },
+      { name: "Elena Korhonen", role: "Lead Game Developer at Supercell", expertise: "Gaming & Mobile Technologies" },
+      { name: "Mika Salo", role: "Head of Product Development at Wolt", expertise: "Food Tech & Delivery Innovation" }
     ],
     schedule: [
       { day: "Day 1", events: ["Opening Ceremony by Nokia Leadership", "5G/6G Workshop", "Team Formation"] },
@@ -146,7 +158,7 @@ const mockHackathons: Hackathon[] = [
     status: "upcoming",
     image: "https://images.pexels.com/photos/2422294/pexels-photo-2422294.jpeg",
     organizer: "Nokia",
-    organizerLogo: "https://upload.wikimedia.org/wikipedia/commons/0/02/Nokia_wordmark.svg",
+    organizerLogo: "",
     tags: ["5G", "6G", "IoT", "Innovation", "Telecommunications"]
   },
   {
@@ -176,24 +188,24 @@ const mockHackathons: Hackathon[] = [
     sponsors: [
       { 
         name: "Nokia", 
-        logo: "https://upload.wikimedia.org/wikipedia/commons/0/02/Nokia_wordmark.svg", 
+        logo: "", 
         tier: "platinum" 
       },
       { 
         name: "KONE", 
-        logo: "https://upload.wikimedia.org/wikipedia/commons/9/95/KONE_logo.svg", 
+        logo: "", 
         tier: "gold" 
       },
       { 
         name: "Wärtsilä", 
-        logo: "https://upload.wikimedia.org/wikipedia/commons/9/9e/W%C3%A4rtsil%C3%A4_logo_2017.svg", 
+        logo: "", 
         tier: "silver" 
       }
     ],
     mentors: [
-      { name: "Pekka Lundmark", role: "President and CEO at Nokia", expertise: "Business Strategy & 5G" },
-      { name: "Henrik Ehrnrooth", role: "CEO at KONE", expertise: "Smart Buildings & IoT" },
-      { name: "Håkan Agnevall", role: "CEO at Wärtsilä", expertise: "Industrial IoT & Sustainability" }
+      { name: "Jari Mäkinen", role: "Senior Technology Architect at Nokia", expertise: "Business Strategy & 5G" },
+      { name: "Elena Korhonen", role: "Lead Game Developer at Supercell", expertise: "Gaming & Mobile Technologies" },
+      { name: "Mika Salo", role: "Head of Product Development at Wolt", expertise: "Food Tech & Delivery Innovation" }
     ],
     schedule: [
       { day: "Day 1", events: ["Opening Ceremony", "Smart City Workshop", "Team Formation"] },
@@ -210,8 +222,36 @@ const mockHackathons: Hackathon[] = [
     status: "past",
     image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg",
     organizer: "Nokia",
-    organizerLogo: "https://upload.wikimedia.org/wikipedia/commons/0/02/Nokia_wordmark.svg",
+    organizerLogo: "",
     tags: ["5G", "IoT", "Smart Cities", "Innovation"]
+  }
+];
+
+// Add mock data for hackathon topics
+const hackathonTopics: HackathonTopic[] = [
+  {
+    id: 1,
+    title: "Smart City Traffic Flow Optimization",
+    description: "Develop solutions that use open traffic data and real-time analytics to optimize urban traffic flow, reduce congestion, and improve emergency vehicle response times.",
+    image: "https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg",
+    votes: 42,
+    totalVotes: 100
+  },
+  {
+    id: 2,
+    title: "Building Energy Efficiency Platform",
+    description: "Create a platform that combines building metadata, IoT sensor data, and open-source energy consumption data to help property managers optimize energy usage and reduce carbon emissions.",
+    image: "https://images.pexels.com/photos/323705/pexels-photo-323705.jpeg",
+    votes: 35,
+    totalVotes: 100
+  },
+  {
+    id: 3,
+    title: "Urban Biodiversity Mapping Tool",
+    description: "Build an interactive mapping tool that visualizes urban biodiversity data, helping city planners and citizens understand and protect local ecosystems using open-source environmental data.",
+    image: "https://images.pexels.com/photos/1766838/pexels-photo-1766838.jpeg",
+    votes: 23,
+    totalVotes: 100
   }
 ];
 
@@ -243,9 +283,24 @@ function TabPanel(props: TabPanelProps) {
 
 const Hackathons: React.FC = () => {
   const [value, setValue] = useState(0);
+  const [topics, setTopics] = useState<HackathonTopic[]>(hackathonTopics);
+  const [selectedTopic, setSelectedTopic] = useState<number | null>(null);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+  };
+
+  const handleVote = (topicId: number) => {
+    if (selectedTopic === null) {
+      setSelectedTopic(topicId);
+      setTopics(prevTopics => 
+        prevTopics.map(topic => 
+          topic.id === topicId 
+            ? { ...topic, votes: topic.votes + 1, totalVotes: topic.totalVotes + 1 } 
+            : { ...topic, totalVotes: topic.totalVotes + 1 }
+        )
+      );
+    }
   };
 
   const upcomingHackathons = [
@@ -276,24 +331,24 @@ const Hackathons: React.FC = () => {
       sponsors: [
         { 
           name: "Nokia", 
-          logo: "https://upload.wikimedia.org/wikipedia/commons/0/02/Nokia_wordmark.svg", 
+          logo: "", 
           tier: "platinum" 
         },
         { 
           name: "Supercell", 
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Supercell_logo_20211112.svg/1280px-Supercell_logo_20211112.svg.png", 
+          logo: "", 
           tier: "gold" 
         },
         { 
-          name: "Rovio", 
-          logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Rovio_Entertainment_Logo_2020.png/1280px-Rovio_Entertainment_Logo_2020.png", 
+          name: "Wolt", 
+          logo: "", 
           tier: "silver" 
         }
       ],
       mentors: [
-        { name: "Pekka Lundmark", role: "President and CEO at Nokia", expertise: "Business Strategy & 5G" },
-        { name: "Ilkka Paananen", role: "CEO at Supercell", expertise: "Gaming & Mobile Technologies" },
-        { name: "Mikko Helander", role: "CEO at Rovio", expertise: "Mobile Gaming & Entertainment" }
+        { name: "Jari Mäkinen", role: "Senior Technology Architect at Nokia", expertise: "Business Strategy & 5G" },
+        { name: "Elena Korhonen", role: "Lead Game Developer at Supercell", expertise: "Gaming & Mobile Technologies" },
+        { name: "Mika Salo", role: "Head of Product Development at Wolt", expertise: "Food Tech & Delivery Innovation" }
       ],
       schedule: [
         { day: "Day 1", events: ["Opening Ceremony by Nokia Leadership", "5G/6G Workshop", "Team Formation"] },
@@ -310,7 +365,7 @@ const Hackathons: React.FC = () => {
       status: "upcoming",
       image: "https://images.pexels.com/photos/2422294/pexels-photo-2422294.jpeg",
       organizer: "Nokia",
-      organizerLogo: "https://upload.wikimedia.org/wikipedia/commons/0/02/Nokia_wordmark.svg",
+      organizerLogo: "",
       tags: ["5G", "6G", "IoT", "Innovation", "Telecommunications"]
     }
   ];
@@ -338,6 +393,107 @@ const Hackathons: React.FC = () => {
           Join exciting hackathons, collaborate with other developers, and win amazing prizes!
         </Typography>
       </Box>
+
+      {/* Voting Section */}
+      <Paper sx={{ p: 3, mb: 4, background: 'linear-gradient(135deg, rgba(0, 180, 216, 0.05) 0%, rgba(0, 180, 216, 0.1) 100%)' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+          <HowToVoteIcon sx={{ mr: 1, color: '#00b4d8' }} />
+          <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#00b4d8' }}>
+            Vote for the Next Hackathon Theme
+          </Typography>
+        </Box>
+        <Typography variant="body1" paragraph>
+          Help us decide the theme for our next hackathon! Click on your preferred theme to cast your vote.
+        </Typography>
+        
+        <Grid container spacing={3} sx={{ mt: 1 }}>
+          {topics.map((topic) => {
+            const votePercentage = Math.round((topic.votes / topic.totalVotes) * 100);
+            const isSelected = selectedTopic === topic.id;
+            
+            return (
+              <Grid item xs={12} md={4} key={topic.id}>
+                <Card 
+                  sx={{ 
+                    height: '100%', 
+                    cursor: selectedTopic === null ? 'pointer' : 'default',
+                    transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+                    transform: isSelected ? 'translateY(-8px)' : 'none',
+                    boxShadow: isSelected ? 8 : 1,
+                    border: isSelected ? '2px solid #00b4d8' : 'none',
+                    '&:hover': {
+                      transform: selectedTopic === null ? 'translateY(-8px)' : 'none',
+                      boxShadow: selectedTopic === null ? 8 : 1,
+                    }
+                  }}
+                  onClick={() => handleVote(topic.id)}
+                >
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={topic.image}
+                    alt={topic.title}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" gutterBottom>
+                      {topic.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" paragraph>
+                      {topic.description}
+                    </Typography>
+                    
+                    <Box sx={{ mt: 2 }}>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                        <Typography variant="body2" color="text.secondary">
+                          {topic.votes} votes
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {votePercentage}%
+                        </Typography>
+                      </Box>
+                      <LinearProgress 
+                        variant="determinate" 
+                        value={votePercentage} 
+                        sx={{ 
+                          height: 8, 
+                          borderRadius: 4,
+                          backgroundColor: 'rgba(0, 180, 216, 0.1)',
+                          '& .MuiLinearProgress-bar': {
+                            backgroundColor: isSelected ? '#00b4d8' : '#90caf9',
+                          }
+                        }} 
+                      />
+                    </Box>
+                    
+                    {isSelected && (
+                      <Box sx={{ mt: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Chip 
+                          icon={<HowToVoteIcon />} 
+                          label="Vote Cast!" 
+                          color="primary" 
+                          sx={{ 
+                            backgroundColor: '#00b4d8',
+                            color: 'white',
+                            fontWeight: 'bold'
+                          }} 
+                        />
+                      </Box>
+                    )}
+                  </CardContent>
+                </Card>
+              </Grid>
+            );
+          })}
+        </Grid>
+        
+        {selectedTopic !== null && (
+          <Box sx={{ mt: 3, textAlign: 'center' }}>
+            <Typography variant="body2" color="text.secondary">
+              Thank you for voting! The results will be announced soon.
+            </Typography>
+          </Box>
+        )}
+      </Paper>
 
       <Paper sx={{ width: '100%', mb: 4 }}>
         <Tabs
@@ -378,10 +534,10 @@ const Hackathons: React.FC = () => {
                         {hackathon.date} • {hackathon.location}
                       </Typography>
                     </Box>
-                    <Chip 
+                    <Chip
                       label={`Next: ${hackathon.nextHackathonDate}`}
                       color="primary"
-                      sx={{ 
+                      sx={{
                         fontWeight: 'bold',
                         whiteSpace: 'nowrap',
                         minWidth: { xs: '100%', sm: 'auto' }
@@ -391,19 +547,19 @@ const Hackathons: React.FC = () => {
                   <Typography variant="body1" paragraph>
                     {hackathon.description}
                   </Typography>
-                  
+
                   {hackathon.title === "Nokia Future Connectivity Hackathon" && (
                     <Box sx={{ mb: 3, borderRadius: 2, overflow: 'hidden', boxShadow: 3 }}>
-                      <img 
-                        src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg" 
-                        alt="Nokia Future Connectivity Hackathon" 
-                        style={{ 
-                          width: '100%', 
+                      <img
+                        src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg"
+                        alt="Nokia Future Connectivity Hackathon"
+                        style={{
+                          width: '100%',
                           height: 'auto',
                           maxHeight: '400px',
                           objectFit: 'cover',
                           display: 'block'
-                        }} 
+                        }}
                       />
                       <Box sx={{ p: 2, bgcolor: 'rgba(0, 180, 216, 0.05)', borderTop: '1px solid rgba(0, 180, 216, 0.2)' }}>
                         <Typography variant="caption" color="text.secondary">
@@ -412,11 +568,11 @@ const Hackathons: React.FC = () => {
                       </Box>
                     </Box>
                   )}
-                  
+
                   <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
                     Theme: {hackathon.theme}
                   </Typography>
-                  
+
                   <Box sx={{ mt: 3 }}>
                     <Typography variant="h6" gutterBottom>
                       Industry Partners & Sponsors
@@ -424,35 +580,36 @@ const Hackathons: React.FC = () => {
                     <Grid container spacing={2} sx={{ mb: 3 }}>
                       {hackathon.sponsors.map((sponsor, index) => (
                         <Grid item xs={12} sm={4} key={index}>
-                          <Box sx={{ 
-                            p: 2, 
-                            border: '1px solid', 
+                          <Box sx={{
+                            p: 2,
+                            border: '1px solid',
                             borderColor: 'divider',
                             borderRadius: 1,
                             textAlign: 'center',
                             bgcolor: sponsor.tier === 'platinum' ? 'rgba(0, 180, 216, 0.05)' : 'transparent'
                           }}>
-                            <img 
-                              src={sponsor.logo} 
-                              alt={sponsor.name} 
-                              style={{ 
-                                width: '100%', 
-                                maxWidth: '150px',
-                                height: 'auto',
-                                marginBottom: '8px'
-                              }} 
-                            />
-                            <Typography variant="subtitle2" sx={{ 
+                            <Typography variant="subtitle2" sx={{
                               fontWeight: 'bold',
                               color: sponsor.tier === 'platinum' ? '#00b4d8' : 'text.primary'
                             }}>
                               {sponsor.name}
                             </Typography>
-                            <Chip 
-                              label={sponsor.tier.charAt(0).toUpperCase() + sponsor.tier.slice(1)} 
+                            <Chip
+                              label={sponsor.tier.charAt(0).toUpperCase() + sponsor.tier.slice(1)}
                               size="small"
-                              color={sponsor.tier === 'platinum' ? 'primary' : 'default'}
-                              sx={{ mt: 1 }}
+                              sx={{ 
+                                mt: 1,
+                                bgcolor: sponsor.tier === 'platinum' ? 'rgba(229, 228, 226, 0.2)' : 
+                                        sponsor.tier === 'gold' ? 'rgba(255, 215, 0, 0.2)' : 
+                                        'rgba(192, 192, 192, 0.2)',
+                                color: sponsor.tier === 'platinum' ? '#E5E4E2' : 
+                                       sponsor.tier === 'gold' ? '#FFD700' : 
+                                       '#C0C0C0',
+                                border: sponsor.tier === 'platinum' ? '1px solid #E5E4E2' : 
+                                        sponsor.tier === 'gold' ? '1px solid #FFD700' : 
+                                        '1px solid #C0C0C0',
+                                fontWeight: 'bold'
+                              }}
                             />
                           </Box>
                         </Grid>
@@ -467,18 +624,55 @@ const Hackathons: React.FC = () => {
                     <Grid container spacing={2}>
                       {hackathon.mentors.map((mentor, index) => (
                         <Grid item xs={12} sm={4} key={index}>
-                          <Card variant="outlined">
+                          <Card variant="outlined" sx={{
+                            bgcolor: mentor.expertise.includes('5G') ? 'rgba(0, 180, 216, 0.1)' : 
+                                    mentor.expertise.includes('Gaming') ? 'rgba(255, 99, 71, 0.1)' : 
+                                    'rgba(46, 204, 113, 0.1)',
+                            border: mentor.expertise.includes('5G') ? '1px solid #00b4d8' : 
+                                   mentor.expertise.includes('Gaming') ? '1px solid #ff6347' : 
+                                   '1px solid #2ecc71',
+                            transition: 'transform 0.2s ease-in-out',
+                            '&:hover': {
+                              transform: 'translateY(-4px)',
+                              boxShadow: 3
+                            }
+                          }}>
                             <CardContent>
-                              <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-                                {mentor.name}
-                              </Typography>
-                              <Typography variant="body2" color="text.secondary">
+                              <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                                {mentor.expertise.includes('5G') ? (
+                                  <TimelineIcon sx={{ color: '#00b4d8', mr: 1 }} />
+                                ) : mentor.expertise.includes('Gaming') ? (
+                                  <EmojiEventsIcon sx={{ color: '#ff6347', mr: 1 }} />
+                                ) : (
+                                  <LocalShippingIcon sx={{ color: '#2ecc71', mr: 1 }} />
+                                )}
+                                <Typography variant="subtitle1" sx={{ 
+                                  fontWeight: 'bold',
+                                  color: mentor.expertise.includes('5G') ? '#00b4d8' : 
+                                         mentor.expertise.includes('Gaming') ? '#ff6347' : 
+                                         '#2ecc71'
+                                }}>
+                                  {mentor.name}
+                                </Typography>
+                              </Box>
+                              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                                 {mentor.role}
                               </Typography>
-                              <Chip 
-                                label={mentor.expertise} 
-                                size="small" 
-                                sx={{ mt: 1 }}
+                              <Chip
+                                label={mentor.expertise}
+                                size="small"
+                                sx={{ 
+                                  bgcolor: mentor.expertise.includes('5G') ? 'rgba(0, 180, 216, 0.2)' : 
+                                          mentor.expertise.includes('Gaming') ? 'rgba(255, 99, 71, 0.2)' : 
+                                          'rgba(46, 204, 113, 0.2)',
+                                  color: mentor.expertise.includes('5G') ? '#00b4d8' : 
+                                         mentor.expertise.includes('Gaming') ? '#ff6347' : 
+                                         '#2ecc71',
+                                  border: mentor.expertise.includes('5G') ? '1px solid #00b4d8' : 
+                                         mentor.expertise.includes('Gaming') ? '1px solid #ff6347' : 
+                                         '1px solid #2ecc71',
+                                  fontWeight: 'bold'
+                                }}
                               />
                             </CardContent>
                           </Card>
@@ -494,22 +688,61 @@ const Hackathons: React.FC = () => {
                     <Grid container spacing={2}>
                       {hackathon.prizes.map((prize, index) => (
                         <Grid item xs={12} sm={4} key={index}>
-                          <Card sx={{ 
+                          <Card sx={{
                             bgcolor: index === 0 ? 'rgba(0, 180, 216, 0.05)' : 'background.paper',
                             border: index === 0 ? '1px solid #00b4d8' : '1px solid',
                             borderColor: 'divider'
                           }}>
                             <CardContent>
-                              <Typography variant="h6" sx={{ 
-                                color: index === 0 ? '#00b4d8' : 'text.primary',
-                                fontWeight: 'bold'
+                              <Box sx={{ 
+                                display: 'flex', 
+                                alignItems: 'center', 
+                                justifyContent: 'center',
+                                mb: 2
                               }}>
-                                {prize.place}
-                              </Typography>
-                              <Typography variant="body1">
+                                <Box sx={{
+                                  width: 60,
+                                  height: 60,
+                                  borderRadius: '50%',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  bgcolor: index === 0 ? '#FFD700' : 
+                                          index === 1 ? '#C0C0C0' : 
+                                          '#CD7F32',
+                                  boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
+                                  position: 'relative',
+                                  '&::before': {
+                                    content: '""',
+                                    position: 'absolute',
+                                    width: '100%',
+                                    height: '100%',
+                                    borderRadius: '50%',
+                                    border: '2px solid',
+                                    borderColor: index === 0 ? '#FFD700' : 
+                                               index === 1 ? '#C0C0C0' : 
+                                               '#CD7F32',
+                                    opacity: 0.5
+                                  }
+                                }}>
+                                  <Typography variant="h4" sx={{ 
+                                    color: 'white',
+                                    fontWeight: 'bold',
+                                    textShadow: '0 1px 2px rgba(0,0,0,0.2)'
+                                  }}>
+                                    {index + 1}
+                                  </Typography>
+                                </Box>
+                              </Box>
+                              <Typography variant="h6" sx={{
+                                textAlign: 'center',
+                                color: index === 0 ? '#00b4d8' : 'text.primary',
+                                fontWeight: 'bold',
+                                mb: 1
+                              }}>
                                 {prize.amount}
                               </Typography>
-                              <Typography variant="body2" color="text.secondary">
+                              <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'center' }}>
                                 {prize.description}
                               </Typography>
                             </CardContent>
@@ -552,11 +785,11 @@ const Hackathons: React.FC = () => {
                         {hackathon.currentParticipants} / {hackathon.maxParticipants} participants registered
                       </Typography>
                     </Box>
-                    <Button 
-                      variant="contained" 
+                    <Button
+                      variant="contained"
                       color="primary"
                       size="large"
-                      sx={{ 
+                      sx={{
                         px: 4,
                         py: 1.5,
                         borderRadius: 2,
