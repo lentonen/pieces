@@ -374,20 +374,34 @@ const Projects = () => {
                 </Box>
               </CardContent>
               <Divider />
-              <CardActions sx={{ justifyContent: 'space-between', p: 2 }}>
+              <CardActions sx={{ 
+                justifyContent: 'space-between', 
+                p: 2,
+                flexDirection: { xs: 'column', sm: 'row' },
+                alignItems: { xs: 'stretch', sm: 'center' }
+              }}>
                 <Button
                   startIcon={<GitHubIcon />}
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  sx={{ mb: { xs: 2, sm: 0 } }}
                 >
                   Repository
                 </Button>
-                <Box>
+                <Box sx={{ 
+                  display: 'flex', 
+                  flexDirection: { xs: 'column', sm: 'row' },
+                  width: { xs: '100%', sm: 'auto' }
+                }}>
                   <Button 
                     variant="outlined" 
                     color="primary"
-                    sx={{ mr: 1 }}
+                    sx={{ 
+                      mr: { xs: 0, sm: 1 },
+                      mb: { xs: 2, sm: 0 },
+                      width: { xs: '100%', sm: 'auto' }
+                    }}
                     onClick={() => navigate('/team-workspace')}
                   >
                     Explore Team Space
@@ -400,7 +414,8 @@ const Projects = () => {
                       background: '#00b4d8',
                       '&:hover': {
                         background: '#0096c7',
-                      }
+                      },
+                      width: { xs: '100%', sm: 'auto' }
                     }}
                   >
                     Join Project

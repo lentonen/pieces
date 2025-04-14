@@ -35,19 +35,19 @@ import {
 const jobListings = [
   {
     id: 1,
-    title: 'Senior Frontend Developer',
+    title: 'Junior Frontend Developer',
     company: 'KONE',
     location: 'Helsinki, Finland',
     type: 'Full-time',
-    level: 'Senior',
+    level: 'Junior',
     postedDate: '2023-05-15',
-    description: 'We are looking for a Senior Frontend Developer to join our team. You will be responsible for developing and maintaining our web applications using React and TypeScript.',
+    description: 'We are looking for a Junior Frontend Developer to join our team. You will be responsible for developing and maintaining our web applications using React and TypeScript. This is a great opportunity for recent graduates or developers with 1-2 years of experience.',
     requirements: [
-      '5+ years of experience in frontend development',
-      'Strong knowledge of React, TypeScript, and modern JavaScript',
-      'Experience with state management libraries (Redux, MobX)',
+      '1-2 years of experience in frontend development',
+      'Knowledge of React, TypeScript, and modern JavaScript',
       'Understanding of web accessibility standards',
-      'Experience with CI/CD pipelines'
+      'Basic knowledge of state management',
+      'Eager to learn and grow'
     ],
     benefits: [
       'Competitive salary',
@@ -56,56 +56,56 @@ const jobListings = [
       'Health insurance',
       'Professional development opportunities'
     ],
-    tags: ['React', 'TypeScript', 'Redux', 'CSS', 'HTML'],
-    salary: '€5000 - €7000',
+    tags: ['React', 'TypeScript', 'JavaScript', 'CSS', 'HTML'],
+    salary: '€3000 - €4000',
     rating: 4.5,
     reviewCount: 128,
     logo: 'https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg'
   },
   {
     id: 2,
-    title: 'Backend Developer',
+    title: 'Software Development Intern',
     company: 'UPM',
     location: 'Tampere, Finland',
-    type: 'Full-time',
-    level: 'Mid-level',
+    type: 'Internship',
+    level: 'Intern',
     postedDate: '2023-05-10',
-    description: 'Join our backend team to develop scalable and efficient server-side applications. You will work with modern technologies and contribute to our sustainable development initiatives.',
+    description: 'Join our development team as a Software Development Intern. You will work on real projects, learn from experienced developers, and gain hands-on experience with modern technologies. This is a paid internship position for 3-6 months.',
     requirements: [
-      '3+ years of experience in backend development',
-      'Strong knowledge of Node.js and Express',
-      'Experience with databases (MongoDB, PostgreSQL)',
-      'Understanding of RESTful API design',
-      'Knowledge of cloud platforms (AWS, Azure)'
+      'Currently pursuing a degree in Computer Science or related field',
+      'Basic knowledge of programming concepts',
+      'Familiarity with web technologies',
+      'Strong problem-solving skills',
+      'Good communication skills'
     ],
     benefits: [
-      'Competitive salary',
+      'Paid internship',
+      'Mentorship program',
       'Flexible working hours',
-      'Remote work options',
-      'Health insurance',
-      'Professional development opportunities'
+      'Learning opportunities',
+      'Potential for full-time position'
     ],
-    tags: ['Node.js', 'Express', 'MongoDB', 'AWS', 'REST API'],
-    salary: '€4000 - €5500',
+    tags: ['Internship', 'Web Development', 'Learning', 'Mentorship'],
+    salary: '€2000 - €2500',
     rating: 4.3,
     reviewCount: 95,
     logo: 'https://images.pexels.com/photos/7654118/pexels-photo-7654118.jpeg'
   },
   {
     id: 3,
-    title: 'Full Stack Developer',
+    title: 'Junior Full Stack Developer',
     company: 'NORDNET',
     location: 'Stockholm, Sweden',
     type: 'Full-time',
-    level: 'Mid-level',
+    level: 'Junior',
     postedDate: '2023-05-05',
-    description: 'We are seeking a Full Stack Developer to join our team. You will work on both frontend and backend development, creating end-to-end solutions for our financial services platform.',
+    description: 'We are seeking a Junior Full Stack Developer to join our team. You will work on both frontend and backend development, creating end-to-end solutions for our financial services platform. Perfect for developers with 1-2 years of experience.',
     requirements: [
-      '3+ years of experience in full stack development',
+      '1-2 years of experience in full stack development',
       'Knowledge of React, Node.js, and TypeScript',
-      'Experience with databases and ORM',
-      'Understanding of microservices architecture',
-      'Knowledge of financial services is a plus'
+      'Basic understanding of databases',
+      'Eager to learn and grow',
+      'Team player mindset'
     ],
     benefits: [
       'Competitive salary',
@@ -114,98 +114,11 @@ const jobListings = [
       'Health insurance',
       'Professional development opportunities'
     ],
-    tags: ['React', 'Node.js', 'TypeScript', 'PostgreSQL', 'Docker'],
-    salary: '€4500 - €6000',
+    tags: ['React', 'Node.js', 'TypeScript', 'JavaScript', 'Full Stack'],
+    salary: '€3500 - €4500',
     rating: 4.7,
     reviewCount: 112,
     logo: 'https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg'
-  },
-  {
-    id: 4,
-    title: 'UI/UX Designer',
-    company: 'KONE',
-    location: 'Helsinki, Finland',
-    type: 'Full-time',
-    level: 'Senior',
-    postedDate: '2023-04-28',
-    description: 'Join our design team to create beautiful and intuitive user interfaces. You will work closely with developers to implement your designs and ensure a great user experience.',
-    requirements: [
-      '5+ years of experience in UI/UX design',
-      'Strong portfolio showcasing your work',
-      'Proficiency in design tools (Figma, Sketch)',
-      'Understanding of user-centered design principles',
-      'Experience with design systems'
-    ],
-    benefits: [
-      'Competitive salary',
-      'Flexible working hours',
-      'Remote work options',
-      'Health insurance',
-      'Professional development opportunities'
-    ],
-    tags: ['UI/UX', 'Figma', 'Design Systems', 'Prototyping', 'User Research'],
-    salary: '€4500 - €6500',
-    rating: 4.4,
-    reviewCount: 87,
-    logo: 'https://images.pexels.com/photos/7654118/pexels-photo-7654118.jpeg'
-  },
-  {
-    id: 5,
-    title: 'DevOps Engineer',
-    company: 'UPM',
-    location: 'Espoo, Finland',
-    type: 'Full-time',
-    level: 'Senior',
-    postedDate: '2023-04-20',
-    description: 'We are looking for a DevOps Engineer to join our team. You will be responsible for setting up and maintaining our CI/CD pipelines, infrastructure, and monitoring systems.',
-    requirements: [
-      '5+ years of experience in DevOps',
-      'Strong knowledge of cloud platforms (AWS, Azure)',
-      'Experience with containerization (Docker, Kubernetes)',
-      'Knowledge of CI/CD tools (Jenkins, GitHub Actions)',
-      'Understanding of infrastructure as code (Terraform, CloudFormation)'
-    ],
-    benefits: [
-      'Competitive salary',
-      'Flexible working hours',
-      'Remote work options',
-      'Health insurance',
-      'Professional development opportunities'
-    ],
-    tags: ['DevOps', 'AWS', 'Docker', 'Kubernetes', 'Terraform'],
-    salary: '€5500 - €7500',
-    rating: 4.6,
-    reviewCount: 76,
-    logo: 'https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg'
-  },
-  {
-    id: 6,
-    title: 'Data Scientist',
-    company: 'NORDNET',
-    location: 'Copenhagen, Denmark',
-    type: 'Full-time',
-    level: 'Senior',
-    postedDate: '2023-04-15',
-    description: 'Join our data science team to develop and implement machine learning models for our financial services platform. You will work with large datasets and contribute to our data-driven decision making.',
-    requirements: [
-      '5+ years of experience in data science',
-      'Strong knowledge of Python and data science libraries',
-      'Experience with machine learning algorithms',
-      'Knowledge of SQL and databases',
-      'Understanding of financial data is a plus'
-    ],
-    benefits: [
-      'Competitive salary',
-      'Flexible working hours',
-      'Remote work options',
-      'Health insurance',
-      'Professional development opportunities'
-    ],
-    tags: ['Python', 'Machine Learning', 'SQL', 'Data Analysis', 'Statistics'],
-    salary: '€5000 - €7000',
-    rating: 4.8,
-    reviewCount: 64,
-    logo: 'https://images.pexels.com/photos/7654118/pexels-photo-7654118.jpeg'
   }
 ];
 

@@ -277,55 +277,65 @@ const Profile: React.FC = () => {
                   </Tooltip>
                 </Box>
               </Box>
-              <Box sx={{ display: 'flex', gap: 1 }}>
+              <Box sx={{ 
+                display: 'flex', 
+                flexDirection: { xs: 'row', sm: 'row' }, 
+                gap: { xs: 1, sm: 2 },
+                flexWrap: 'wrap',
+                mt: { xs: 2, sm: 0 }
+              }}>
                 <Button
                   variant="contained"
-                  fullWidth
+                  size={isMobile ? "small" : "medium"}
                   sx={{
-                    mt: 2,
                     background: '#00b4d8',
                     '&:hover': {
                       background: '#0096c7'
-                    }
+                    },
+                    flex: { xs: '1 1 auto', sm: '0 0 auto' },
+                    minWidth: { xs: 'auto', sm: '150px' }
                   }}
                 >
                   Edit Profile
                 </Button>
                 <Button
                   variant="contained"
-                  fullWidth
+                  size={isMobile ? "small" : "medium"}
                   sx={{
-                    mt: 2,
                     background: '#00b4d8',
                     '&:hover': {
                       background: '#0096c7'
-                    }
+                    },
+                    flex: { xs: '1 1 auto', sm: '0 0 auto' },
+                    minWidth: { xs: 'auto', sm: '150px' }
                   }}
                 >
                   Add Project
                 </Button>
                 <Button
                   variant="contained"
-                  fullWidth
+                  size={isMobile ? "small" : "medium"}
                   sx={{
-                    mt: 2,
                     background: '#00b4d8',
                     '&:hover': {
                       background: '#0096c7'
-                    }
+                    },
+                    flex: { xs: '1 1 auto', sm: '0 0 auto' },
+                    minWidth: { xs: 'auto', sm: '150px' }
                   }}
                 >
                   Add Experience
                 </Button>
                 <Button
                   variant="contained"
-                  fullWidth
+                  size={isMobile ? "small" : "medium"}
                   sx={{
-                    mt: 2,
                     background: '#00b4d8',
                     '&:hover': {
                       background: '#0096c7'
-                    }
+                    },
+                    flex: { xs: '1 1 auto', sm: '0 0 auto' },
+                    minWidth: { xs: 'auto', sm: '150px' }
                   }}
                 >
                   Add Education

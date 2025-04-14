@@ -351,7 +351,15 @@ const Forum: React.FC = () => {
                         <Typography variant="h6" gutterBottom>
                           {discussion.title}
                         </Typography>
-                        <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+                        <Box sx={{ 
+                          display: 'flex', 
+                          flexWrap: 'wrap', 
+                          gap: 1, 
+                          mb: 2,
+                          '& .MuiChip-root': {
+                            mb: { xs: 1, sm: 0 }
+                          }
+                        }}>
                           <Chip 
                             label={discussion.category}
                             size="small"

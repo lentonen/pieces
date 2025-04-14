@@ -369,7 +369,7 @@ const Hackathons: React.FC = () => {
             {upcomingHackathons.map((hackathon) => (
               <Card key={hackathon.id} sx={{ mb: 4 }}>
                 <CardContent>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
+                  <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'center' }, mb: 2, gap: 2 }}>
                     <Box>
                       <Typography variant="h5" gutterBottom>
                         {hackathon.title}
@@ -381,7 +381,11 @@ const Hackathons: React.FC = () => {
                     <Chip 
                       label={`Next: ${hackathon.nextHackathonDate}`}
                       color="primary"
-                      sx={{ fontWeight: 'bold' }}
+                      sx={{ 
+                        fontWeight: 'bold',
+                        whiteSpace: 'nowrap',
+                        minWidth: { xs: '100%', sm: 'auto' }
+                      }}
                     />
                   </Box>
                   <Typography variant="body1" paragraph>
@@ -539,7 +543,7 @@ const Hackathons: React.FC = () => {
                     </Timeline>
                   </Box>
 
-                  <Box sx={{ mt: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Box sx={{ mt: 4, display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'stretch', sm: 'center' }, gap: 2 }}>
                     <Box>
                       <Typography variant="body2" color="text.secondary">
                         Registration Deadline: {hackathon.registrationDeadline}
@@ -557,7 +561,8 @@ const Hackathons: React.FC = () => {
                         py: 1.5,
                         borderRadius: 2,
                         textTransform: 'none',
-                        fontWeight: 'bold'
+                        fontWeight: 'bold',
+                        width: { xs: '100%', sm: 'auto' }
                       }}
                     >
                       Register Now

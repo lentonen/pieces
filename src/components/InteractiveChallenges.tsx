@@ -14,7 +14,9 @@ import {
   Tab,
   Badge,
   IconButton,
-  Tooltip
+  Tooltip,
+  useTheme,
+  useMediaQuery
 } from '@mui/material';
 import { 
   EmojiEvents as TrophyIcon,
@@ -133,6 +135,8 @@ function TabPanel(props: TabPanelProps) {
 
 const InteractiveChallenges: React.FC = () => {
   const [tabValue, setTabValue] = useState(0);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
@@ -149,7 +153,8 @@ const InteractiveChallenges: React.FC = () => {
           value={tabValue} 
           onChange={handleTabChange} 
           aria-label="challenge tabs"
-          variant="fullWidth"
+          variant={isMobile ? "scrollable" : "fullWidth"}
+          scrollButtons="auto"
         >
           <Tab 
             label={

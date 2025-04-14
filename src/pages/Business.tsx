@@ -13,7 +13,9 @@ import {
   CardActions,
   Button,
   Chip,
-  Avatar
+  Avatar,
+  useTheme,
+  useMediaQuery
 } from '@mui/material';
 import InteractiveChallenges from '../components/InteractiveChallenges';
 import CompanyAchievements from '../components/CompanyAchievements';
@@ -29,6 +31,8 @@ import {
 // Main component
 const Business = () => {
   const [tabValue, setTabValue] = useState(0);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
@@ -85,7 +89,8 @@ const Business = () => {
           onChange={handleTabChange}
           indicatorColor="primary"
           textColor="primary"
-          variant="fullWidth"
+          variant={isMobile ? "scrollable" : "fullWidth"}
+          scrollButtons="auto"
           sx={{ borderBottom: 1, borderColor: 'divider' }}
         >
           <Tab 
