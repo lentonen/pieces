@@ -7,25 +7,16 @@ import {
   Grid, 
   Card, 
   CardContent, 
-  CardMedia, 
-  CardActionArea,
-  Avatar,
-  AvatarGroup,
   Chip,
-  Divider,
   styled,
   useTheme,
-  CardActions,
   Paper
 } from '@mui/material';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import CodeIcon from '@mui/icons-material/Code';
 import GroupIcon from '@mui/icons-material/Group';
-import SchoolIcon from '@mui/icons-material/School';
 import WorkIcon from '@mui/icons-material/Work';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import SearchIcon from '@mui/icons-material/Search';
-import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import EventIcon from '@mui/icons-material/Event';
 import PeopleIcon from '@mui/icons-material/People';
 import FolderIcon from '@mui/icons-material/Folder';
@@ -34,26 +25,6 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import logo3 from '../images/logo3.png';
 
-// Styled components
-const StyledCard = styled(Card)(({ theme }) => ({
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  transition: 'transform 0.3s ease-in-out',
-  background: 'rgba(19, 47, 76, 0.5)',
-  backdropFilter: 'blur(10px)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  '&:hover': {
-    transform: 'translateY(-8px)',
-    boxShadow: theme.shadows[10],
-  },
-}));
-
-const StyledChip = styled(Chip)(({ theme }) => ({
-  margin: theme.spacing(0.5),
-  borderRadius: '16px',
-  fontWeight: 600,
-}));
 
 const HeroSection = styled('div')(({ theme }) => ({
   minHeight: '60vh',
@@ -101,36 +72,6 @@ const ButtonContainer = styled(Box)(({ theme }) => ({
     '& > button': {
       width: '100%',
     },
-  },
-}));
-
-const FeaturedSection = styled('div')(({ theme }) => ({
-  padding: theme.spacing(8, 0),
-  [theme.breakpoints.down('sm')]: {
-    padding: theme.spacing(4, 0),
-  },
-}));
-
-const ProjectGrid = styled(Grid)(({ theme }) => ({
-  marginTop: theme.spacing(4),
-  [theme.breakpoints.down('sm')]: {
-    marginTop: theme.spacing(2),
-  },
-}));
-
-const ProjectCard = styled(Card)(({ theme }) => ({
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  background: 'rgba(19, 47, 76, 0.5)',
-  backdropFilter: 'blur(10px)',
-  borderRadius: theme.spacing(2),
-  transition: 'transform 0.3s ease-in-out',
-  '&:hover': {
-    transform: 'translateY(-8px)',
-  },
-  [theme.breakpoints.down('sm')]: {
-    marginBottom: theme.spacing(2),
   },
 }));
 
@@ -199,60 +140,6 @@ const EventCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  techStack: string[];
-  teamSize: number;
-  currentMembers: number;
-  members: {
-    id: number;
-    name: string;
-    avatar: string;
-  }[];
-  lookingFor: string[];
-  status: string;
-  difficulty: string;
-}
-
-// Featured projects data
-const featuredProjects: Project[] = [
-  {
-    id: 1,
-    title: 'AI Image Recognition',
-    description: 'Join our team building an AI-powered image recognition system. Looking for ML engineers and UI developers!',
-    image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg',
-    techStack: ['Python', 'TensorFlow', 'React', 'OpenCV'],
-    teamSize: 4,
-    currentMembers: 2,
-    members: [
-      { id: 1, name: 'Anna Lee', avatar: 'https://i.pravatar.cc/150?img=1' },
-      { id: 2, name: 'Chris Martin', avatar: 'https://i.pravatar.cc/150?img=2' },
-    ],
-    lookingFor: ['ML Engineer', 'UI Developer'],
-    status: 'In Progress',
-    difficulty: 'Advanced',
-  },
-  {
-    id: 2,
-    title: 'Social Media Analytics',
-    description: 'Create a powerful analytics dashboard for social media. Need data scientists and frontend developers!',
-    image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg',
-    techStack: ['React', 'Python', 'D3.js', 'Firebase'],
-    teamSize: 4,
-    currentMembers: 2,
-    members: [
-      { id: 3, name: 'Robert Wilson', avatar: 'https://i.pravatar.cc/150?img=3' },
-      { id: 4, name: 'Lisa Anderson', avatar: 'https://i.pravatar.cc/150?img=4' },
-    ],
-    lookingFor: ['Data Scientist', 'Frontend Developer'],
-    status: 'Planning',
-    difficulty: 'Intermediate',
-  },
-];
-
 // Mock data for upcoming events
 const upcomingEvents = [
   {
@@ -317,16 +204,7 @@ const Home: React.FC = () => {
           >
             Explore Projects
           </Button>
-          <Button
-            variant="outlined"
-            color="primary"
-            size="large"
-            component={RouterLink}
-            to="/events"
-            startIcon={<EventIcon />}
-          >
-            View Events
-          </Button>
+        
           <Button
             variant="contained"
             color="secondary"

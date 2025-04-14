@@ -8,23 +8,16 @@ import {
   Button, 
   Grid, 
   Chip, 
-  Avatar, 
-  Divider,
   Tabs,
   Tab,
-  Badge,
-  IconButton,
-  Tooltip,
   useTheme,
   useMediaQuery
 } from '@mui/material';
 import { 
-  EmojiEvents as TrophyIcon,
   Group as TeamIcon,
   Lightbulb as IdeaIcon,
   AccessTime as TimeIcon,
   Star as StarIcon,
-  TrendingUp as TrendingIcon
 } from '@mui/icons-material';
 
 // Mock data for challenges

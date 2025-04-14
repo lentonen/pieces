@@ -12,8 +12,6 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-  ListItemSecondaryAction,
-  IconButton,
   Tooltip,
   Paper,
   Table,
@@ -22,12 +20,10 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Badge
 } from '@mui/material';
 import { 
   EmojiEvents as TrophyIcon,
   Star as StarIcon,
-  TrendingUp as TrendingIcon,
   Favorite as FavoriteIcon,
   CheckCircle as CheckCircleIcon,
   Message as MessageIcon,

@@ -13,7 +13,6 @@ import {
   CardActions,
   Button,
   Chip,
-  Avatar,
   useTheme,
   useMediaQuery
 } from '@mui/material';

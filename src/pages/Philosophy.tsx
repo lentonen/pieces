@@ -16,7 +16,6 @@ import WorkIcon from '@mui/icons-material/Work';
 import SchoolIcon from '@mui/icons-material/School';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import PsychologyIcon from '@mui/icons-material/Psychology';
-import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
 
 const HeroSection = styled('div')(({ theme }) => ({
   padding: theme.spacing(8, 0, 4),

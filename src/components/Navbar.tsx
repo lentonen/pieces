@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   AppBar, 
   Toolbar, 
@@ -19,11 +19,8 @@ import { Link as RouterLink } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import CodeIcon from '@mui/icons-material/Code';
 import BusinessIcon from '@mui/icons-material/Business';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import FolderIcon from '@mui/icons-material/Folder';
 import EventIcon from '@mui/icons-material/Event';
 import ForumIcon from '@mui/icons-material/Forum';
-import LoginIcon from '@mui/icons-material/Login';
 import PersonIcon from '@mui/icons-material/Person';
 import { Lightbulb as LightbulbIcon } from '@mui/icons-material';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';

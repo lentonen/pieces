@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { Container, Box, Typography, Grid, Card, CardContent, CardMedia, Button, Chip, Avatar, Tabs, Tab, Divider, Paper, List, ListItem, ListItemText, ListItemIcon, LinearProgress } from '@mui/material';
+import { Container, Box, Typography, Grid, Card, CardContent, CardMedia, Button, Chip, Avatar, Tabs, Tab, Paper, LinearProgress } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import GroupIcon from '@mui/icons-material/Group';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import PersonIcon from '@mui/icons-material/Person';
-import StarIcon from '@mui/icons-material/Star';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import HowToVoteIcon from '@mui/icons-material/HowToVote';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';

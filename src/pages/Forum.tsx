@@ -12,17 +12,10 @@ import {
   TextField,
   InputAdornment,
   Avatar,
-  Divider,
-  IconButton,
-  Menu,
-  MenuItem,
-  Breadcrumbs,
-  Link,
 } from '@mui/material';
 import { 
   Search as SearchIcon, 
   Add as AddIcon, 
-  MoreVert as MoreVertIcon,
   Forum as ForumIcon,
   Code as CodeIcon,
   School as SchoolIcon,
@@ -30,9 +23,7 @@ import {
   Lightbulb as LightbulbIcon,
   QuestionAnswer as QuestionAnswerIcon,
   TrendingUp as TrendingUpIcon,
-  AccessTime as AccessTimeIcon,
 } from '@mui/icons-material';
-import { Link as RouterLink } from 'react-router-dom';
 
 // Mock data for forum categories
 const categories = [
@@ -197,19 +188,7 @@ const recentDiscussions = [
 
 const Forum: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [selectedThread, setSelectedThread] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
-
-  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>, threadId: number) => {
-    setAnchorEl(event.currentTarget);
-    setSelectedThread(threadId);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    setSelectedThread(null);
-  };
 
   const filteredDiscussions = recentDiscussions.filter(discussion =>
     (discussion.title.toLowerCase().includes(searchQuery.toLowerCase()) ||

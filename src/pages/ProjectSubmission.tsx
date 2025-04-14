@@ -12,20 +12,15 @@ import {
   Select,
   MenuItem,
   Chip,
-  InputAdornment,
-  IconButton,
-  Divider,
   Alert,
   SelectChangeEvent,
   Avatar,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CodeIcon from '@mui/icons-material/Code';
 import GroupIcon from '@mui/icons-material/Group';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import { styled } from '@mui/material/styles';
 
 // Styled components

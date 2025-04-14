@@ -15,7 +15,7 @@ import {
   Avatar,
   AvatarGroup,
 } from '@mui/material';
-import { Search as SearchIcon, Add as AddIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon, Group as GroupIcon } from '@mui/icons-material';
+import { Search as SearchIcon, Add as AddIcon, ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon } from '@mui/icons-material';
 
 // Mock data for events
 const mockEvents = [
@@ -356,9 +356,6 @@ const Events: React.FC = () => {
 
   // Filter events for the current month
   useEffect(() => {
-    const today = new Date();
-    const currentMonth = today.getMonth();
-    const currentYear = today.getFullYear();
     
     // For testing purposes, let's make sure we have events for the current month
     // by using the mock events directly

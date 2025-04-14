@@ -15,7 +15,6 @@ import {
   InputLabel,
   IconButton,
   Tooltip,
-  Divider,
   Avatar,
   Rating,
   SelectChangeEvent

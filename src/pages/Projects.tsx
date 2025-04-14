@@ -26,10 +26,8 @@ import {
 import GitHubIcon from '@mui/icons-material/GitHub';
 import GroupIcon from '@mui/icons-material/Group';
 import SearchIcon from '@mui/icons-material/Search';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import CodeIcon from '@mui/icons-material/Code';
-import StarIcon from '@mui/icons-material/Star';
 import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 
