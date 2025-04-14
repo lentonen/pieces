@@ -15,7 +15,8 @@ import {
   Divider,
   styled,
   useTheme,
-  CardActions
+  CardActions,
+  Paper
 } from '@mui/material';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import CodeIcon from '@mui/icons-material/Code';
@@ -26,6 +27,11 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import SearchIcon from '@mui/icons-material/Search';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import EventIcon from '@mui/icons-material/Event';
+import PeopleIcon from '@mui/icons-material/People';
+import FolderIcon from '@mui/icons-material/Folder';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import logo3 from '../images/logo3.png';
 
 // Styled components
@@ -161,6 +167,38 @@ const PhilosophyCard = styled(Card)(({ theme }) => ({
   },
 }));
 
+const StatsCard = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(3),
+  textAlign: 'center',
+  borderRadius: theme.spacing(2),
+  background: 'rgba(19, 47, 76, 0.5)',
+  backdropFilter: 'blur(10px)',
+  border: '1px solid rgba(255, 255, 255, 0.1)',
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  transition: 'transform 0.3s ease-in-out',
+  '&:hover': {
+    transform: 'translateY(-8px)',
+    boxShadow: theme.shadows[10],
+  },
+}));
+
+const EventCard = styled(Card)(({ theme }) => ({
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  background: 'rgba(19, 47, 76, 0.5)',
+  backdropFilter: 'blur(10px)',
+  borderRadius: theme.spacing(2),
+  transition: 'transform 0.3s ease-in-out',
+  '&:hover': {
+    transform: 'translateY(-8px)',
+    boxShadow: theme.shadows[10],
+  },
+}));
+
 interface Project {
   id: number;
   title: string;
@@ -215,6 +253,45 @@ const featuredProjects: Project[] = [
   },
 ];
 
+// Mock data for upcoming events
+const upcomingEvents = [
+  {
+    id: 1,
+    title: 'Junior Devs Code Together',
+    date: new Date(new Date().getFullYear(), new Date().getMonth(), 12),
+    location: 'Café Code, Helsinki',
+    type: 'Coding Session',
+    participants: 15,
+    maxParticipants: 25,
+  },
+  {
+    id: 2,
+    title: 'Junior Devs Game Night',
+    date: new Date(new Date().getFullYear(), new Date().getMonth(), 18),
+    location: 'Game Hub, Espoo',
+    type: 'Social',
+    participants: 22,
+    maxParticipants: 30,
+  },
+  {
+    id: 3,
+    title: 'Junior Devs Project Showcase',
+    date: new Date(new Date().getFullYear(), new Date().getMonth(), 22),
+    location: 'Innovation Space, Helsinki',
+    type: 'Showcase',
+    participants: 18,
+    maxParticipants: 40,
+  },
+];
+
+// Community statistics
+const communityStats = {
+  members: 1250,
+  projects: 342,
+  events: 78,
+  achievements: 156,
+};
+
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const theme = useTheme();
@@ -250,9 +327,180 @@ const Home: React.FC = () => {
           >
             View Events
           </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            component={RouterLink}
+            to="/login"
+            startIcon={<PersonAddIcon />}
+            sx={{ 
+              mt: { xs: 2, sm: 0 },
+              background: 'linear-gradient(45deg, #ff69b4 30%, #ff8da1 90%)',
+              '&:hover': {
+                background: 'linear-gradient(45deg, #ff4d94 30%, #ff6b8f 90%)',
+              }
+            }}
+          >
+            Join the Community
+          </Button>
         </ButtonContainer>
       </HeroSection>
 
+      {/* Community Statistics Section */}
+      <Container maxWidth="lg" sx={{ py: 6 }}>
+        <Typography 
+          variant="h3" 
+          align="center" 
+          gutterBottom
+          sx={{ 
+            color: 'primary.main',
+            fontWeight: 600,
+            mb: 4,
+            [theme.breakpoints.down('sm')]: {
+              fontSize: '1.8rem',
+              mb: 3,
+            },
+          }}
+        >
+          Our Growing Community
+        </Typography>
+        <Grid container spacing={4}>
+          <Grid item xs={6} sm={3}>
+            <StatsCard>
+              <PeopleIcon sx={{ fontSize: 40, color: 'primary.main', mb: 2 }} />
+              <Typography variant="h3" sx={{ fontWeight: 'bold', color: 'white' }}>
+                {communityStats.members}
+              </Typography>
+              <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                Members
+              </Typography>
+            </StatsCard>
+          </Grid>
+          <Grid item xs={6} sm={3}>
+            <StatsCard>
+              <FolderIcon sx={{ fontSize: 40, color: 'primary.main', mb: 2 }} />
+              <Typography variant="h3" sx={{ fontWeight: 'bold', color: 'white' }}>
+                {communityStats.projects}
+              </Typography>
+              <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                Projects
+              </Typography>
+            </StatsCard>
+          </Grid>
+          <Grid item xs={6} sm={3}>
+            <StatsCard>
+              <EventIcon sx={{ fontSize: 40, color: 'primary.main', mb: 2 }} />
+              <Typography variant="h3" sx={{ fontWeight: 'bold', color: 'white' }}>
+                {communityStats.events}
+              </Typography>
+              <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                Events
+              </Typography>
+            </StatsCard>
+          </Grid>
+          <Grid item xs={6} sm={3}>
+            <StatsCard>
+              <EmojiEventsIcon sx={{ fontSize: 40, color: 'primary.main', mb: 2 }} />
+              <Typography variant="h3" sx={{ fontWeight: 'bold', color: 'white' }}>
+                {communityStats.achievements}
+              </Typography>
+              <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                Achievements
+              </Typography>
+            </StatsCard>
+          </Grid>
+        </Grid>
+      </Container>
+
+      {/* Upcoming Events Section */}
+      <Container maxWidth="lg" sx={{ py: 6, background: 'rgba(19, 47, 76, 0.3)', borderRadius: 2 }}>
+        <Typography 
+          variant="h3" 
+          align="center" 
+          gutterBottom
+          sx={{ 
+            color: 'primary.main',
+            fontWeight: 600,
+            mb: 4,
+            [theme.breakpoints.down('sm')]: {
+              fontSize: '1.8rem',
+              mb: 3,
+            },
+          }}
+        >
+          Upcoming Events
+        </Typography>
+        <Grid container spacing={4}>
+          {upcomingEvents.map((event) => (
+            <Grid item xs={12} md={4} key={event.id}>
+              <EventCard>
+                <CardContent>
+                  <Typography variant="h5" component="h3" gutterBottom sx={{ fontWeight: 600 }}>
+                    {event.title}
+                  </Typography>
+                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                    <CalendarTodayIcon sx={{ mr: 1, color: 'primary.main' }} />
+                    <Typography variant="body2">
+                      {event.date.toLocaleDateString('fi-FI', { day: 'numeric', month: 'long' })}
+                    </Typography>
+                  </Box>
+                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                    <LocationOnIcon sx={{ mr: 1, color: 'primary.main' }} />
+                    <Typography variant="body2">
+                      {event.location}
+                    </Typography>
+                  </Box>
+                  <Chip 
+                    label={event.type} 
+                    size="small" 
+                    sx={{ 
+                      mb: 2, 
+                      backgroundColor: 'rgba(0, 180, 216, 0.2)',
+                      color: 'primary.main',
+                      fontWeight: 600
+                    }} 
+                  />
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                      {event.participants} / {event.maxParticipants} participants
+                    </Typography>
+                    <Button 
+                      variant="outlined" 
+                      size="small" 
+                      component={RouterLink} 
+                      to="/events"
+                      sx={{ 
+                        borderColor: 'primary.main',
+                        color: 'primary.main',
+                        '&:hover': {
+                          borderColor: 'primary.light',
+                          backgroundColor: 'rgba(0, 180, 216, 0.1)',
+                        }
+                      }}
+                    >
+                      Join
+                    </Button>
+                  </Box>
+                </CardContent>
+              </EventCard>
+            </Grid>
+          ))}
+        </Grid>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            component={RouterLink}
+            to="/events"
+            startIcon={<EventIcon />}
+          >
+            View All Events
+          </Button>
+        </Box>
+      </Container>
+      
       <PhilosophySection>
         <Container maxWidth="lg">
           <Typography 
