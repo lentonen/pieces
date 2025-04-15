@@ -1,5 +1,4 @@
-# Getting Started with Create React App
-
+# PIECES - Community for junior developers
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
